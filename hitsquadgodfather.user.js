@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam Links for hitsquadgodfather store
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  try to take over the world!
 // @author       @SilentGuy
 // @match        https://streamelements.com/hitsquadgodfather/store
@@ -57,7 +57,7 @@ function perGameFunction (jNode) {
     var c = document.createElement("button");
     c.className = "md-raised md-primary public-store-buy-button md-button md-dark-theme md-ink-ripple";
     c.innerText="HIDE";
-    c.onclick = function(){hideGame(x.innerText);actionFunction2 (jNode)};
+    c.onclick = function(){hideGame(x.innerText);jNode.remove()};
     jNode[0].children[2].appendChild(c);
 
 // Delete Tile if hidden
