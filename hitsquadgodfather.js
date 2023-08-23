@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam Links for hitsquadgodfather store
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       @SilentGuy
 // @match        https://streamelements.com/hitsquadgodfather/store
@@ -32,6 +32,22 @@ function actionFunction1 (jNode) {
     c.className = "md-raised md-primary public-store-buy-button md-button md-dark-theme md-ink-ripple";
     c.innerText="Clear";
     c.onclick = function(){GM_deleteValue("hit_hidden");location.reload()};
+    jNode[0].appendChild(c);
+    c = document.createElement("button");
+    c.className = "md-raised md-primary public-store-buy-button md-button md-dark-theme md-ink-ripple";
+    c.innerText="Export";
+    c.onclick = function(){prompt("Hidden games:",GM_getValue("hit_hidden"))};
+    jNode[0].appendChild(c);
+    c = document.createElement("button");
+    c.className = "md-raised md-primary public-store-buy-button md-button md-dark-theme md-ink-ripple";
+    c.innerText="Import";
+    c.onclick = function(){
+        let x = prompt("Hidden games:",GM_getValue("hit_hidden"));
+        if (x != null && x != "") {
+            GM_setValue("hit_hidden",x);
+            location.reload();
+        }
+    };
     jNode[0].appendChild(c);
 
 
